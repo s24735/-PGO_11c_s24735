@@ -1,5 +1,9 @@
 package src.second.tutorial;
 
+import src.second.tutorial.exception.BookDoesNotExistsException;
+import src.second.tutorial.exception.InvalidValueProvidedException;
+import src.second.tutorial.exception.TooManyBooksBorrowedException;
+
 import java.time.LocalDate;
 
 public class Book {
@@ -46,13 +50,13 @@ public class Book {
 
     public void borrowBook(Person person) {
         if (!Main.database.containsValue(this)) {
-            throw new BookDoesNotExists("Book does not exists.");
+            throw new BookDoesNotExistsException("Book does not exists.");
         }
         if (Main.borrowerWithBook.containsValue(person)) {
-            throw new TooManyBooksBorrowed();
+            throw new TooManyBooksBorrowedException();
         }
         if (!this.isAvailable) {
-            throw new BookDoesNotExists("Book is not available.");
+            throw new BookDoesNotExistsException("Book is not available.");
         }
         this.isAvailable = false;
         Main.borrowerWithBook.put(this, person);

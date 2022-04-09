@@ -1,4 +1,4 @@
-package src.second.tutorial;
+package src.second.tutorial.exception;
 
 public class InvalidValueProvidedException extends RuntimeException {
 

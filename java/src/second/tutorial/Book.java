@@ -62,6 +62,7 @@ public class Book {
         borrowCount++;
         Main.borrowerWithBook.put(this, person);
         System.out.println("Person " + person.getName() + " borrowed book: " + this.getName());
+        System.out.println(person);
         System.out.println(this);
     }
 
@@ -70,6 +71,7 @@ public class Book {
             this.isAvailable = true;
             Main.borrowerWithBook.remove(this);
             System.out.println("Book " + this.getName() + " returned to library");
+            System.out.println(this);
         }
         else {
             System.out.println("Book " + this.getName() + " was never borrowed");

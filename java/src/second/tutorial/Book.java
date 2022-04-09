@@ -59,8 +59,10 @@ public class Book {
             throw new BookDoesNotExistsException("Book is not available.");
         }
         this.isAvailable = false;
+        borrowCount++;
         Main.borrowerWithBook.put(this, person);
         System.out.println("Person " + person.getName() + " borrowed book: " + this.getName());
+        System.out.println(this);
     }
 
     public void placeBack() {

@@ -17,30 +17,31 @@ public class ShoppingCart {
 
     public void addToCart(List<Products> products) {
         for (Products p : products) {
-            totalPrice += p.getPrice() * p.getQuantity();
-            totalDeliveryTime += p.
+            computeDeliveryTime(p);
         }
         this.products.addAll(products);
     }
 
     public void addToCart(Products product) {
+        computeDeliveryTime(product);
         this.products.add(product);
     }
 
-    public void sell() {
-
+    private void computeDeliveryTime(Products p) {
+        totalPrice += p.getPrice();
+        long deliveryTime = p.getTotalDeliveryTime();
+        if (deliveryTime == -1) {
+            throw new RuntimeException("Product is not available");
+        }
+        totalDeliveryTime += deliveryTime;
     }
 
-    public static int getId() {
-        return id;
+    public void sell() {
+        products.forEach(p -> p.sell(1));
     }
 
     public double getTotalPrice() {
         return totalPrice;
-    }
-
-    public long getTotalDeliveryTime() {
-        return totalDeliveryTime;
     }
 
     public List<Products> getProducts() {
